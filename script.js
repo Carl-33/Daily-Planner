@@ -1,6 +1,6 @@
 
 $(document).ready(function () {
-// declaring variables
+    // declaring variables
     var saveBtn = $(".saveBtn")
     var currentDay = $("#currentDay")
     var nineAM = $('#9AM')
@@ -31,17 +31,17 @@ $(document).ready(function () {
     var textArea3 = $("#text-area-3PM")
     var textArea4 = $("#text-area-4PM")
     var textArea5 = $("#text-area-5PM")
-// Setting the current hour
+    // Setting the current hour
     // var time = moment().format('H');
     var time = 10
     var hour = parseInt(time);
-// Setting all save buttons and text areas into arrays
+    // Setting all save buttons and text areas into arrays
     var textAreaArray = [textArea9, textArea10, textArea11, textArea12, textArea1, textArea2, textArea3, textArea4, textArea5]
     var saveBtnArray = [save9, save10, save11, save12, save1, save2, save3, save4, save5]
     var plannerRow = $(".planner-row")
-// Setting the current day.
+    // Setting the current day.
     currentDay.append(moment().format('MMMM Do YYYY'));
-// Changing the coloring of the rows depending on the hour.  Gray for past, red for current, and green for future.
+    // Changing the coloring of the rows depending on the hour.  Gray for past, red for current, and green for future.
     if (hour < 9) {
         plannerRow.removeClass("past")
         plannerRow.removeClass("present")
@@ -161,17 +161,16 @@ $(document).ready(function () {
         plannerRow.removeClass("future")
         plannerRow.addClass("past")
     }
-// setting item to local storage whenever the corresponding save button is pressed
+    // setting item to local storage whenever the corresponding save button is pressed
     for (let i = 0; i < saveBtnArray.length; i++) {
         saveBtnArray[i].on("click", function () {
 
             var schedule = textAreaArray[i].val();
-            console.log(schedule)
             localStorage.setItem("schedule " + i, schedule)
         });
 
     }
-// Getting items from local storage for each hour
+    // Getting items from local storage for each hour
     var schedule0 = localStorage.getItem("schedule 0")
     var schedule1 = localStorage.getItem("schedule 1")
     var schedule2 = localStorage.getItem("schedule 2")
@@ -181,36 +180,88 @@ $(document).ready(function () {
     var schedule6 = localStorage.getItem("schedule 6")
     var schedule7 = localStorage.getItem("schedule 7")
     var schedule8 = localStorage.getItem("schedule 8")
-   
-   
-   
-    if (schedule0 != null){ 
+// if the local storage doesn't equal null, the saved value will be appended 
+    if (schedule0 != null) {
         textArea9.append(schedule0)
     }
-    if (schedule1 != null){
+    if (schedule1 != null) {
         textArea10.append(schedule1)
     }
-    if (schedule2 != null){
+    if (schedule2 != null) {
         textArea11.append(schedule2)
-    }  
-    if (schedule3 != null){
+    }
+    if (schedule3 != null) {
         textArea12.append(schedule3)
     }
-    if (schedule4 != null){
+    if (schedule4 != null) {
         textArea1.append(schedule4)
     }
-    if (schedule5 != null){
+    if (schedule5 != null) {
         textArea2.append(schedule5)
     }
-    if (schedule6 != null){
+    if (schedule6 != null) {
         textArea3.append(schedule6)
     }
-    if (schedule7 != null){
+    if (schedule7 != null) {
         textArea4.append(schedule7)
     }
-    if (schedule8 != null){
+    if (schedule8 != null) {
         textArea5.append(schedule8)
+    } else {
+        textArea5.text('');
     }
-// var clearButton = "<button>"
+    // Creating and appending clear buttons to each row
+    var clearButton9 = $("<button>")
+    clearButton9.addClass("clear col-lg-1 col-md-1 col-sm-1 col-1")
+    clearButton9.text("Clear")
+    $("#9AM").append(clearButton9)
 
+    var clearButton10 = $("<button>")
+    clearButton10.addClass("clear col-lg-1 col-md-1 col-sm-1 col-1")
+    clearButton10.text("Clear")
+    $("#10AM").append(clearButton10)
+
+    var clearButton11 = $("<button>")
+    clearButton11.addClass("clear col-lg-1 col-md-1 col-sm-1 col-1")
+    clearButton11.text("Clear")
+    $("#11AM").append(clearButton11)
+
+    var clearButton12 = $("<button>")
+    clearButton12.addClass("clear col-lg-1 col-md-1 col-sm-1 col-1")
+    clearButton12.text("Clear")
+    $("#12PM").append(clearButton12)
+
+    var clearButton1 = $("<button>")
+    clearButton1.addClass("clear col-lg-1 col-md-1 col-sm-1 col-1")
+    clearButton1.text("Clear")
+    $("#1PM").append(clearButton1)
+
+    var clearButton2 = $("<button>")
+    clearButton2.addClass("clear col-lg-1 col-md-1 col-sm-1 col-1")
+    clearButton2.text("Clear")
+    $("#2PM").append(clearButton2)
+
+    var clearButton3 = $("<button>")
+    clearButton3.addClass("clear col-lg-1 col-md-1 col-sm-1 col-1")
+    clearButton3.text("Clear")
+    $("#3PM").append(clearButton3)
+
+    var clearButton4 = $("<button>")
+    clearButton4.addClass("clear col-lg-1 col-md-1 col-sm-1 col-1")
+    clearButton4.text("Clear")
+    $("#4PM").append(clearButton4)
+
+    var clearButton5 = $("<button>")
+    clearButton5.addClass("clear col-lg-1 col-md-1 col-sm-1 col-1")
+    clearButton5.text("Clear")
+    $("#5PM").append(clearButton5)
+// array of all the clear buttons
+    var clearBtnArray = [clearButton9, clearButton10, clearButton11, clearButton12, clearButton1, clearButton2, clearButton3, clearButton4, clearButton5]
+// Sets local storage for the coresponding hour to ""
+    for (let j = 0; j < clearBtnArray.length; j++) {
+        clearBtnArray[j].on("click", function () {
+            var schedule = ""
+            localStorage.setItem("schedule " + j, schedule)
+        });
+    }
 });
