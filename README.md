@@ -17,4 +17,4 @@ The current hour is diplayed in yellow, past hours are displayed in gray, and fu
 
 ## Installation Instructions
 
-N/A
+Simply clone the repository to start using this Daily Planner for yourself.
